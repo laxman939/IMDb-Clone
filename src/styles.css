@@ -1,0 +1,13 @@
+
+html{
+    background-color: rgb(75 85 99);
+    font-family: "Roboto" !important;
+}
+
+#root{
+    background-color: rgb(75 85 99);
+}
+
+.carousel-caption {
+    left: 0 !important;
+}
