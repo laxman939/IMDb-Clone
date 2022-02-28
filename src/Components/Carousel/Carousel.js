@@ -23,17 +23,24 @@ function CarouselComponet() {
 
   return (
     <>
-      <Carousel fade interval="3000" className="flex py-12 px-4 bg-gray-600">
+      <Carousel
+        fade
+        interval="3000"
+        className="flex py-12 px-2 md:px-4 bg-gray-600"
+      >
         {movies.map((m) => {
           return (
-            <Carousel.Item className="flex items-end">
+            <Carousel.Item className="flex items-end" key={m.id}>
               <img
-                className="d-block w-100 h-[50vh] md:h-[90vh] object-fill rounded-lg hover:brightness-120 hover:contrast-125"
+                className={`d-block w-100 h-[50vh] md:h-[90vh] 
+                object-fill rounded-lg hover:brightness-120 hover:contrast-125`}
                 src={`https://image.tmdb.org/t/p/w500${m.backdrop_path}`}
                 alt="slide"
               />
               <Carousel.Caption
-                className={`text-xl md:text-3xl w-full bottom-0 bg-gray-900 bg-opacity-50 font-bold rounded-b-xl p-2 md:p-4
+                className={`text-xl md:text-3xl font-bold
+                w-full bottom-0 rounded-b-xl p-3
+                bg-gray-900 bg-opacity-50  
                 `}
               >
                 {m.original_title}
@@ -49,8 +56,10 @@ function CarouselComponet() {
             alt="Second slide"
           />
           <Carousel.Caption
-            className={`text-lg md:text-2xl w-full bottom-0 bg-gray-900 bg-opacity-50 font-bold rounded-b-xl p-2 md:p-4
-            `}
+            className={`text-xl md:text-3xl font-bold
+                w-full bottom-0 rounded-b-xl p-2 md:p-4
+                bg-gray-900 bg-opacity-50  
+                `}
           >
             Moon Knight
           </Carousel.Caption>
@@ -63,8 +72,10 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-lg md:text-2xl w-full bottom-0 bg-gray-900 bg-opacity-50 font-bold rounded-b-xl p-2 md:p-4
-            `}
+            className={`text-xl md:text-3xl font-bold
+                w-full bottom-0 rounded-b-xl p-2 md:p-4
+                bg-gray-900 bg-opacity-50  
+                `}
           >
             12 Angry Men
           </Carousel.Caption>
@@ -77,8 +88,10 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-lg md:text-2xl w-full bottom-0 bg-gray-900 bg-opacity-50 font-bold rounded-b-xl p-2 md:p-4
-            `}
+            className={`text-xl md:text-3xl font-bold
+                w-full bottom-0 rounded-b-xl p-3
+                bg-gray-900 bg-opacity-50  
+                `}
           >
             Jai Bhim
           </Carousel.Caption>
@@ -91,8 +104,10 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-lg md:text-2xl w-full bottom-0 bg-gray-900 bg-opacity-50 font-bold rounded-b-xl p-2 md:p-4
-            `}
+            className={`text-xl md:text-3xl font-bold
+                w-full bottom-0 rounded-b-xl p-3
+                bg-gray-900 bg-opacity-50  
+                `}
           >
             Ford v Ferrari
           </Carousel.Caption>
@@ -105,8 +120,10 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-lg md:text-2xl w-full bottom-0 bg-gray-900 bg-opacity-50 font-bold rounded-b-xl p-2 md:p-4
-          `}
+            className={`text-xl md:text-3xl font-bold
+                w-full bottom-0 rounded-b-xl p-3
+                bg-gray-900 bg-opacity-50  
+                `}
           >
             The Godfather
           </Carousel.Caption>
