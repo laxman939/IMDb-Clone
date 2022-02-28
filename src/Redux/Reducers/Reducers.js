@@ -1,10 +1,10 @@
-import { ActionType } from "../Constants/consants";
+import { ActionType } from "../Constants/Constants";
 
-const { PAGE, TRENDING, FAVOURITES } = ActionType;
+const { PAGE, TRENDING_MOVIES, FAVOURITES } = ActionType;
 
 export let initialState = {
   page: 1,
-  trending: [],
+  trendMovies: [],
   favourites: [],
 };
 
@@ -21,12 +21,12 @@ export const PageNumber = (state = initialState, action) => {
   }
 };
 
-export default function GetTrendingReducer(state = initialState, action) {
+export default function TrendingMoviesReducer(state = initialState, action) {
   switch (action.type) {
-    case TRENDING:
+    case TRENDING_MOVIES:
       return {
         ...state,
-        trending: action.payload,
+        trendMovies: action.payload,
       };
 
     default:
@@ -34,7 +34,7 @@ export default function GetTrendingReducer(state = initialState, action) {
   }
 }
 
-export function GetFavouritesReducer(state = initialState, action) {
+export function FavouriteMovieReducer(state = initialState, action) {
   switch (action.type) {
     case FAVOURITES:
       return {

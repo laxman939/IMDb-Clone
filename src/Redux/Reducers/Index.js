@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 
-import GetTrendingReducer, {
-  GetFavouritesReducer,
+import TrendingMoviesReducer, {
+  FavouriteMovieReducer,
   PageNumber,
 } from "./Reducers";
 
 const Reducer = combineReducers({
   Page: PageNumber,
-  Trending: GetTrendingReducer,
-  Favourites: GetFavouritesReducer,
+  TrendMovies: TrendingMoviesReducer,
+  Favourites: FavouriteMovieReducer,
 });
 export default Reducer;
