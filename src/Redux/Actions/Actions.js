@@ -1,6 +1,6 @@
-import { ActionType } from "../Constants/consants";
+import { ActionType } from "../Constants/Constants";
 
-const { PAGE, TRENDING, FAVOURITES } = ActionType;
+const { PAGE, TRENDING_MOVIES, FAVOURITES } = ActionType;
 
 // action to store page number
 export const pageNumberAction = (nmbr) => {
@@ -10,14 +10,14 @@ export const pageNumberAction = (nmbr) => {
   };
 };
 
-export const getTrendingAction = (movies) => {
+export const getTrendingMovies = (movies) => {
   return {
-    type: TRENDING,
+    type: TRENDING_MOVIES,
     payload: movies,
   };
 };
 
-export const getFavoritesAction = (movie) => {
+export const getFavoriteMovie = (movie) => {
   return {
     type: FAVOURITES,
     payload: movie,
