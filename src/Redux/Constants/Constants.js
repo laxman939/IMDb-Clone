@@ -1,5 +1,5 @@
 export const ActionType = {
   PAGE: "PAGE",
-  TRENDING: "TRENDING",
+  TRENDING_MOVIES: "TRENDING_MOVIES",
   FAVOURITES: "FAVOURITES",
 };
