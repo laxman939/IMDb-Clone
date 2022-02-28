@@ -11,7 +11,7 @@ export default function Pagination() {
       <div
         className="w-full 
         flex justify-center
-        mb-8 bg-gray-600"
+        py-8 bg-gray-600"
       >
         <button
           className="
