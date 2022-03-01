@@ -43,14 +43,33 @@ function Trending() {
   }
 
   useEffect(() => {
+    //To get from local Storage (Every time when page Reloads)
+    let localFav = localStorage.getItem("imdb-clone");
+    localFav = JSON.parse(localFav);
+
+    dispatch(getFavoriteMovie(localFav));
+
+    // To get trending movies with api
     getMovies();
   }, [pageNmbr]);
 
-  //Favourites
+  // Favourites -->Add
   const addFav = (movie) => {
+    // To store in Redux store
     dispatch(getFavoriteMovie([...favList, movie])); //New movie with prev movies
 
-    // console.log("Favourites " + favList);
+    // To store in Local Storage also
+    localStorage.setItem("imdb-clone", JSON.stringify(favList));
+  };
+
+  // Favourites -->Delete
+  const deleteFav = (movie) => {
+    let delFav = favList.filter((m) => m.id !== movie.id);
+
+    dispatch(getFavoriteMovie([...delFav])); // To delete in redux store
+
+    // To delete in Local Storage also
+    localStorage.setItem("imdb-clone", JSON.stringify(delFav));
   };
 
   return (
@@ -95,10 +114,10 @@ function Trending() {
                   alt="posters"
                 />
                 <div
-                  className={`text-base md:text-lg font-bold text-white
+                  className={`text-base md:text-lg font-bold text-yellow-200
                     w-full bottom-0 bg-slate-800 border-b-2 border-gray-600
                     p-1 md:p-2
-                    text-center
+                    text-center font-mono
                     `}
                 >
                   {movie.original_title}
@@ -112,18 +131,24 @@ function Trending() {
                     `}
                 >
                   <div className="flex flex-column pb-2">
-                    <span className="font-bold text-base">
+                    <span className="font-bold text-base text-orange-700">
                       <LikeOutlined />
                     </span>
-                    {movie.vote_average}({movie.vote_count})
+                    <span className="text-yellow-600 font-mono">
+                      {movie.vote_average}({movie.vote_count})
+                    </span>
                   </div>
-                  <div className="flex flex-column">
-                    <span className="font-bold">Release</span>
-                    <span>{movie.release_date}</span>
+                  <div className="flex flex-column pt-2">
+                    <span className="font-extrabold text-orange-700">
+                      Release
+                    </span>
+                    <span className="text-yellow-600 font-mono">
+                      {movie.release_date}
+                    </span>
                   </div>
-                  <div className="flex flex-column">
-                    <span className="font-bold">Type</span>
-                    <span>
+                  <div className="flex flex-column pt-2">
+                    <span className="font-extrabold text-orange-700">Type</span>
+                    <span className="text-yellow-600 font-mono">
                       {movie.media_type}({movie.original_language})
                     </span>
                   </div>
@@ -132,14 +157,14 @@ function Trending() {
                       <>
                         {favList.find((m) => m.id === movie.id) ? (
                           <span
-                            className={`text-xl text-red-900 hover:text-red-600 cursor-pointer`}
-                            onClick={() => console.log("Removed")}
+                            className={`text-xl text-red-900 hover:text-red-500 cursor-pointer`}
+                            onClick={() => deleteFav(movie)}
                           >
                             <HeartFilled />
                           </span>
                         ) : (
                           <span
-                            className={`text-xl text-pink-800 hover:text-red-500 cursor-pointer`}
+                            className={`text-xl text-pink-900 hover:text-red-500 cursor-pointer`}
                             onClick={() => addFav(movie)}
                           >
                             <HeartOutlined />
