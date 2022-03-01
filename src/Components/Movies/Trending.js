@@ -45,7 +45,7 @@ function Trending() {
   useEffect(() => {
     //To get from local Storage (Every time when page Reloads)
     let localFav = localStorage.getItem("imdb-clone");
-    localFav = JSON.parse(localFav);
+    localFav = JSON.parse(localFav) || [];
 
     dispatch(getFavoriteMovie(localFav));
 
