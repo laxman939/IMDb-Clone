@@ -5,6 +5,8 @@ import Favourites from "./Components/Favourites/Favourites";
 import Trending from "./Components/Movies/Trending";
 import NavBar from "./Components/Navigation/NavBar";
 import Pagination from "./Components/Pagination/Pagination";
+import SignIn from "./Components/SignIn/SignIn";
+import SignUp from "./Components/SignUp/SignUp";
 import "./styles.css";
 
 function App() {
@@ -23,7 +25,10 @@ function App() {
           }
         />
         <Route path="/favourites" element={<Favourites />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
+      n
     </BrowserRouter>
   );
 }
