@@ -9,7 +9,7 @@ export default function Pagination() {
   return (
     <>
       <div
-        className="w-full 
+        className="pagination-section w-full 
         flex justify-center
         py-8 bg-gray-600"
       >

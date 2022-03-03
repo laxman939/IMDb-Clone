@@ -26,7 +26,7 @@ function CarouselComponet() {
       <Carousel
         fade
         interval="3000"
-        className="flex py-12 px-2 md:px-4 bg-gray-600"
+        className="carousel-section flex py-12 px-2 md:px-4 bg-gray-600"
       >
         {movies.map((m) => {
           return (
@@ -38,12 +38,14 @@ function CarouselComponet() {
                 alt="slide"
               />
               <Carousel.Caption
-                className={`text-xl md:text-3xl font-bold
+                className={`text-xl md:text-3xl font-extrabold
                 w-full bottom-0 rounded-b-xl p-3
-                bg-gray-900 bg-opacity-50  
+                bg-gray-900 bg-opacity-50  text-yellow-200
                 `}
               >
-                {m.original_title}
+                <span className="text-yellow-200 font-mono">
+                  {m.original_title}
+                </span>
               </Carousel.Caption>
             </Carousel.Item>
           );
@@ -56,12 +58,12 @@ function CarouselComponet() {
             alt="Second slide"
           />
           <Carousel.Caption
-            className={`text-xl md:text-3xl font-bold
+            className={`text-xl md:text-3xl font-bold text-yellow-200
                 w-full bottom-0 rounded-b-xl p-2 md:p-4
                 bg-gray-900 bg-opacity-50  
                 `}
           >
-            Moon Knight
+            <span className="text-yellow-200 font-mono">Moon Knight</span>
           </Carousel.Caption>
         </Carousel.Item>
 
@@ -72,12 +74,12 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-xl md:text-3xl font-bold
+            className={`text-xl md:text-3xl font-bold text-yellow-200
                 w-full bottom-0 rounded-b-xl p-2 md:p-4
                 bg-gray-900 bg-opacity-50  
                 `}
           >
-            12 Angry Men
+            <span className="text-yellow-200 font-mono">12 Angry Men</span>
           </Carousel.Caption>
         </Carousel.Item>
 
@@ -88,12 +90,12 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-xl md:text-3xl font-bold
+            className={`text-xl md:text-3xl font-bold text-yellow-200
                 w-full bottom-0 rounded-b-xl p-3
                 bg-gray-900 bg-opacity-50  
                 `}
           >
-            Jai Bhim
+            <span className="text-yellow-200 font-mono">Jai Bhim</span>
           </Carousel.Caption>
         </Carousel.Item>
 
@@ -104,12 +106,12 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-xl md:text-3xl font-bold
+            className={`text-xl md:text-3xl font-bold text-yellow-200
                 w-full bottom-0 rounded-b-xl p-3
                 bg-gray-900 bg-opacity-50  
                 `}
           >
-            Ford v Ferrari
+            <span className="text-yellow-200 font-mono">Ford v Ferrari</span>
           </Carousel.Caption>
         </Carousel.Item>
 
@@ -120,12 +122,12 @@ function CarouselComponet() {
             alt="First slide"
           />
           <Carousel.Caption
-            className={`text-xl md:text-3xl font-bold
+            className={`text-xl md:text-3xl font-bold text-yellow-200
                 w-full bottom-0 rounded-b-xl p-3
                 bg-gray-900 bg-opacity-50  
                 `}
           >
-            The Godfather
+            <span className="text-yellow-200 font-mono">The Godfather</span>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

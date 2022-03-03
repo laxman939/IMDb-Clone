@@ -74,8 +74,8 @@ function Trending() {
 
   return (
     <>
-      <div className="mb-8 mt-2 bg-gray-600">
-        <div className="mb-3 pl-6 md:pl-12 font-extrabold text-xl md:text-2xl text-left text-yellow-500 hover:text-yellow-300">
+      <div className="trending-section mb-8 mt-2 bg-gray-600">
+        <div className="mb-3 pl-6 md:pl-12 font-extrabold text-xl md:text-2xl text-left text-orange-900 hover:text-orange-700">
           Trending Movies
         </div>
 
@@ -96,9 +96,9 @@ function Trending() {
             trendingMovies.map((movie) => (
               <div
                 className={`flex flex-column
-                  md:h-[50vh] md:w-[320px] h-[38vh] w-[250px]
+                  md:h-[52vh] md:w-[320px] h-[38vh] w-[250px]
                   rounded-xl 
-                  md:px-4 md:m-2 mb-4 px-0 
+                  md:px-4 md:m-3 mb-4 px-0 
                   hover:scale-105 ease-out duration-300
                 `}
                 key={movie.id}
