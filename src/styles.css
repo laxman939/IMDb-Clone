@@ -3,13 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-    background-color: rgb(75 85 99);
+html, .carousel-section, .trending-section, .pagination-section, body {
+    background-color: rgb(156, 136, 104) !important;
     font-family: "Roboto" !important;
 }
 
 #root{
-    background-color: rgb(75 85 99);
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(156, 136, 104);
 }
 
 .carousel-caption {
