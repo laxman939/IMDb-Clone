@@ -1,10 +1,48 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { UserOutlined } from "@ant-design/icons";
+import { Alert } from "react-bootstrap";
 
 function SignIn() {
+  const navigate = useNavigate();
+
+  const [errorText, setErrorText] = useState();
+  const [signinData, setSigninData] = useState({
+    email: "",
+    password: "",
+  });
+  console.log(" ErrorText " + errorText);
+  function handleChange(e) {
+    setSigninData({
+      ...signinData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function signinBtn(e) {
+    e.preventDefault();
+
+    let localData = localStorage.getItem("Signup");
+    localData = JSON.parse(localData);
+    // console.log("localData" + localData.name);
+
+    let mail = localData.email;
+    let pswrd = localData.password;
+
+    if (signinData.email === "" && signinData.password === "") {
+      setErrorText("Please fill fields.");
+    } else if (signinData.email !== mail && signinData.password !== pswrd) {
+      setErrorText("Please fill correct Info else keep trying.");
+    } else if (signinData.email === mail && signinData.password === pswrd) {
+      setErrorText("");
+      navigate("/");
+    }
+  }
+
+  localStorage.getItem("Signup");
+
   return (
     <>
       <div className="max-h-full flex items-center justify-center py-12 px-20 sm:px-10 lg:px-10">
@@ -34,8 +72,12 @@ function SignIn() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 
+                  placeholder-gray-500 text-gray-900 rounded-t-md 
+                  sm:text-sm peer"
                   placeholder="Email address"
+                  value={signinData.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="py-6">
@@ -48,8 +90,12 @@ function SignIn() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded relative block w-full 
+                  px-3 py-2 border border-gray-300 placeholder-gray-500 
+                  text-gray-900 rounded-b-md sm:text-sm peer"
                   placeholder="Password"
+                  value={signinData.password}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -61,11 +107,22 @@ function SignIn() {
                 py-2 border border-transparent 
                 text-sm font-medium rounded-md text-white bg-orange-900 
                 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                onClick={signinBtn}
               >
-                <span className="absolute flex items-center pl-3"></span>
                 Sign in
               </button>
             </div>
+
+            <Alert color="primary" variant="danger" className="text-center">
+              {errorText}
+            </Alert>
+
+            {/* {match === false && (
+              <Alert color="primary" variant="danger" className="text-center">
+                {ErrorText}
+              </Alert>
+            )} */}
+
             <div className="flex justify-center text-center p-2">
               To create an account please click &nbsp;
               <Link

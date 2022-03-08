@@ -1,9 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { Alert } from "react-bootstrap";
 
 import { UserOutlined } from "@ant-design/icons";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+
+  const [signUpdata, setSignUpData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [alert, setAlert] = useState(false);
+
+  // const [isSignup, setisSignup] = useState(false);
+
+  function handleChange(e) {
+    setSignUpData({
+      ...signUpdata,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function signupBtn(e) {
+    e.preventDefault();
+    if (signUpdata.name && signUpdata.email && signUpdata.password) {
+      // localStorage.setItem("Signup", JSON.stringify(signUpdata));
+      navigate("/signin");
+    } else {
+      setAlert(!alert);
+    }
+  }
+
   return (
     <>
       <div className="max-h-full flex items-center justify-center py-12 px-20 sm:px-10 lg:px-10">
@@ -33,8 +63,12 @@ export default function SignUp() {
                   type="text"
                   autoComplete="text"
                   required
-                  className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded relative block w-full 
+                  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 
+                  rounded-t-md sm:text-sm"
                   placeholder="Your Name"
+                  value={signUpdata.name}
+                  onChange={handleChange}
                 />
               </div>
               <div className="py-3">
@@ -47,8 +81,12 @@ export default function SignUp() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded relative block w-full 
+                  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 
+                  rounded-t-md sm:text-sm"
                   placeholder="Email address"
+                  value={signUpdata.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="py-3">
@@ -61,8 +99,12 @@ export default function SignUp() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded relative block w-full 
+                  px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 
+                  rounded-b-md sm:text-sm"
                   placeholder="Password"
+                  value={signUpdata.password}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -74,10 +116,18 @@ export default function SignUp() {
                 py-2 border border-transparent 
                 text-sm font-medium rounded-md text-white bg-orange-900 
                 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                onClick={signupBtn}
               >
                 Sign up
               </button>
             </div>
+
+            {alert === true && (
+              <Alert color="primary" variant="danger" className="text-center">
+                I got it you are in hurry! But every field is important!
+              </Alert>
+            )}
+
             <span className="flex justify-center p-2">
               For Login please click &nbsp;
               <Link
