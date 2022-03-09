@@ -9,7 +9,7 @@ html, .carousel-section, .trending-section, .pagination-section, body {
 }
 
 #root{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
     background-color: rgb(156, 136, 104);
 }
 
