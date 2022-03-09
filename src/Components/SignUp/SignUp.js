@@ -15,8 +15,6 @@ export default function SignUp() {
   });
   const [alert, setAlert] = useState(false);
 
-  // const [isSignup, setisSignup] = useState(false);
-
   function handleChange(e) {
     setSignUpData({
       ...signUpdata,
@@ -27,7 +25,7 @@ export default function SignUp() {
   function signupBtn(e) {
     e.preventDefault();
     if (signUpdata.name && signUpdata.email && signUpdata.password) {
-      // localStorage.setItem("Signup", JSON.stringify(signUpdata));
+      localStorage.setItem("Signup", JSON.stringify(signUpdata));
       navigate("/signin");
     } else {
       setAlert(!alert);
