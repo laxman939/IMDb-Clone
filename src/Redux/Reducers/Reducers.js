@@ -1,11 +1,23 @@
 import { ActionType } from "../Constants/Constants";
 
-const { PAGE, TRENDING_MOVIES, FAVOURITES } = ActionType;
+const {
+  PAGE,
+  TRENDING_MOVIES,
+  MOVIEFAVOURITES,
+  TVFAVOURITES,
+  ISSIGNIN,
+  TRENDING_TV,
+  USERNAME,
+} = ActionType;
 
 export let initialState = {
   page: 1,
   trendMovies: [],
-  favourites: [],
+  movieFavourites: [],
+  tvFavourites: [],
+  isSignIn: false,
+  trendTv: [],
+  userName: "",
 };
 
 export const PageNumber = (state = initialState, action) => {
@@ -34,12 +46,64 @@ export default function TrendingMoviesReducer(state = initialState, action) {
   }
 }
 
-export function FavouriteMovieReducer(state = initialState, action) {
+export function TrendingTvReducer(state = initialState, action) {
   switch (action.type) {
-    case FAVOURITES:
+    case TRENDING_TV:
       return {
         ...state,
-        favourites: action.payload,
+        trendTv: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+
+export function FavouritesMovieReducer(state = initialState, action) {
+  switch (action.type) {
+    case MOVIEFAVOURITES:
+      return {
+        ...state,
+        movieFavourites: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+
+export function FavouritesTvReducer(state = initialState, action) {
+  switch (action.type) {
+    case TVFAVOURITES:
+      return {
+        ...state,
+        tvFavourites: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+
+export function SignInReducer(state = initialState, action) {
+  switch (action.type) {
+    case ISSIGNIN:
+      return {
+        ...state,
+        isSignIn: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+
+export function UserNameReducer(state = initialState, action) {
+  switch (action.type) {
+    case USERNAME:
+      return {
+        ...state,
+        userName: action.payload,
       };
 
     default:
