@@ -2,18 +2,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { signInClick, getUserName } from "../../Redux/Actions/Actions";
+import { useDispatch } from "react-redux";
+
 import { UserOutlined } from "@ant-design/icons";
 import { Alert } from "react-bootstrap";
 
+import generateUserName from "generate-username-from-email";
+
 function SignIn() {
   const navigate = useNavigate();
+  const dispatcher = useDispatch();
 
   const [errorText, setErrorText] = useState();
   const [signinData, setSigninData] = useState({
     email: "",
     password: "",
   });
-  console.log(" ErrorText " + errorText);
+
   function handleChange(e) {
     setSigninData({
       ...signinData,
@@ -24,12 +30,15 @@ function SignIn() {
   function signinBtn(e) {
     e.preventDefault();
 
+    // From local storage
     let localData = localStorage.getItem("Signup");
     localData = JSON.parse(localData);
-    // console.log("localData" + localData.name);
 
     let mail = localData.email;
     let pswrd = localData.password;
+
+    //To Eliminate numbers and  Extract username
+    let extractedName = generateUserName(mail).replace(/[0-9]/g, "");
 
     if (signinData.email === "" && signinData.password === "") {
       setErrorText("Please fill fields.");
@@ -37,11 +46,11 @@ function SignIn() {
       setErrorText("Please fill correct Info else keep trying.");
     } else if (signinData.email === mail && signinData.password === pswrd) {
       setErrorText("");
-      navigate("/");
+      dispatcher(signInClick(true));
+      dispatcher(getUserName(extractedName));
+      navigate("/profile");
     }
   }
-
-  localStorage.getItem("Signup");
 
   return (
     <>
@@ -116,12 +125,6 @@ function SignIn() {
             <Alert color="primary" variant="danger" className="text-center">
               {errorText}
             </Alert>
-
-            {/* {match === false && (
-              <Alert color="primary" variant="danger" className="text-center">
-                {ErrorText}
-              </Alert>
-            )} */}
 
             <div className="flex justify-center text-center p-2">
               To create an account please click &nbsp;
