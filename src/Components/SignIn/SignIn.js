@@ -20,6 +20,10 @@ function SignIn() {
     password: "",
   });
 
+  // From local storage
+  let localData = localStorage.getItem("users");
+  localData = JSON.parse(localData);
+
   function handleChange(e) {
     setSigninData({
       ...signinData,
@@ -30,25 +34,22 @@ function SignIn() {
   function signinBtn(e) {
     e.preventDefault();
 
-    // From local storage
-    let localData = localStorage.getItem("Signup");
-    localData = JSON.parse(localData);
-
-    let mail = localData.email;
-    let pswrd = localData.password;
-
     //To Eliminate numbers and  Extract username
-    let extractedName = generateUserName(mail).replace(/[0-9]/g, "");
+    let extractedName = generateUserName(signinData.email).replace(
+      /[0-9]/g,
+      ""
+    );
 
     if (signinData.email === "" && signinData.password === "") {
       setErrorText("Please fill fields.");
-    } else if (signinData.email !== mail && signinData.password !== pswrd) {
-      setErrorText("Please fill correct Info else keep trying.");
-    } else if (signinData.email === mail && signinData.password === pswrd) {
+    } else if (
+      localData.map((u) => u.email === signinData.mail) &&
+      localData.map((u) => u.password === signinData.password)
+    ) {
       setErrorText("");
       dispatcher(signInClick(true));
       dispatcher(getUserName(extractedName));
-      navigate("/profile");
+      navigate("/success");
     }
   }
 

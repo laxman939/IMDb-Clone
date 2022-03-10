@@ -14,6 +14,14 @@ export default function SignUp() {
     password: "",
   });
   const [alert, setAlert] = useState(false);
+  const [isExist, setIsExist] = useState(false);
+  let setUser = [];
+
+  //local Stoarge
+  // Check if present in local storage add it otherwise show empty array
+  setUser = JSON.parse(localStorage.getItem("users"))
+    ? JSON.parse(localStorage.getItem("users"))
+    : [];
 
   function handleChange(e) {
     setSignUpData({
@@ -25,8 +33,15 @@ export default function SignUp() {
   function signupBtn(e) {
     e.preventDefault();
     if (signUpdata.name && signUpdata.email && signUpdata.password) {
-      localStorage.setItem("Signup", JSON.stringify(signUpdata));
+      setUser.push({
+        name: signUpdata.name,
+        email: signUpdata.email,
+        password: signUpdata.password,
+      });
+      localStorage.setItem("users", JSON.stringify(setUser));
       navigate("/signin");
+    } else if (setUser.some((u) => u.email === signUpdata.email)) {
+      setIsExist(!isExist);
     } else {
       setAlert(!alert);
     }
@@ -123,6 +138,12 @@ export default function SignUp() {
             {alert === true && (
               <Alert color="primary" variant="danger" className="text-center">
                 I got it you are in hurry! But every field is important!
+              </Alert>
+            )}
+
+            {isExist === true && (
+              <Alert color="primary" variant="danger" className="text-center">
+                This mail is already registered
               </Alert>
             )}
 
