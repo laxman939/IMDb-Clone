@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFavouriteMovies } from "../../Redux/Actions/Actions";
 import { movieGenreids } from "../../APIs/BaseApi";
 
-import { ArrowDownOutlined } from "@ant-design/icons";
+import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 
 export default function MovieFavourites() {
   const [curGenre, setCurGenre] = useState("All Genres");
@@ -69,7 +69,7 @@ export default function MovieFavourites() {
   }
 
   return (
-    <div className="bg-white shadow-md">
+    <div className="bg-white shadow-md min-h-screen">
       <div
         className={`bg-gray-300 p-2 rounded-b-lg
         flex flex-row flex-wrap justify-center`}
@@ -111,70 +111,42 @@ export default function MovieFavourites() {
                         className="px-6 py-1 text-center text-xs font-extrabold text-gray-500 uppercase tracking-wider"
                       >
                         <div className="flex flex-row justify-left">
-                          <div
-                            className="flex flex-column border-2 rounded font-bold px-1
-                          cursor-pointer hover:bg-gray-400"
-                            onClick={() => {
-                              setPopularity(0);
-                              setRating(-1);
-                            }}
-                          >
-                            <span>H</span>
-                            <span>
+                          <div className="flex justify-center py-4 px-0">
+                            <div className="p-0">RATING</div>
+                            <div
+                              className="flex column hover:text-red-800 cursor-pointer"
+                              onClick={() => {
+                                setRating(-1);
+                                setPopularity(0);
+                                rating === -1 && setRating(1);
+                                setPopularity(0);
+                              }}
+                            >
+                              <ArrowUpOutlined />
                               <ArrowDownOutlined />
-                            </span>
-                            <span>L</span>
-                          </div>
-                          <div className="py-4 px-1"> RATING</div>
-                          <div
-                            className="flex flex-column border-2 rounded font-bold px-1
-                          cursor-pointer hover:bg-gray-400"
-                            onClick={() => {
-                              setPopularity(0);
-                              setRating(1);
-                            }}
-                          >
-                            <span>L</span>
-                            <span>
-                              <ArrowDownOutlined />
-                            </span>
-                            <span>H</span>
+                            </div>
                           </div>
                         </div>
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-extrabold text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-1 text-center text-xs font-extrabold text-gray-500 uppercase tracking-wider"
                       >
                         <div className="flex flex-row justify-left">
-                          <div
-                            className="flex flex-column border-2 rounded font-bold px-1
-                          cursor-pointer hover:bg-gray-400"
-                            onClick={() => {
-                              setPopularity(-1);
-                              setRating(0);
-                            }}
-                          >
-                            <span>H</span>
-                            <span>
+                          <div className="flex justify-center py-4 px-0">
+                            <div className="pt-0">POPULARITY</div>
+                            <div
+                              className="flex flex column hover:text-red-800 cursor-pointer"
+                              onClick={() => {
+                                setPopularity(1);
+                                setRating(0);
+                                popularity === 1 && setPopularity(-1);
+                                setRating(0);
+                              }}
+                            >
+                              <ArrowUpOutlined />
                               <ArrowDownOutlined />
-                            </span>
-                            <span>L</span>
-                          </div>
-                          <div className="py-4 px-1"> POPULARITY</div>
-                          <div
-                            className="flex flex-column border-2 rounded font-bold px-1
-                          cursor-pointer hover:bg-gray-400"
-                            onClick={() => {
-                              setPopularity(1);
-                              setRating(0);
-                            }}
-                          >
-                            <span>L</span>
-                            <span>
-                              <ArrowDownOutlined />
-                            </span>
-                            <span>H</span>
+                            </div>
                           </div>
                         </div>
                       </th>
@@ -193,51 +165,57 @@ export default function MovieFavourites() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {filterdMovies.map((movie) => (
-                      <tr key={movie.id}>
-                        <td className="px-1 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            <div className="flex-shrink-0 md:h-[100px] md:w-[180px]">
-                              <img
-                                className="hidden md:block md:h-[100px] md:w-[180px] object-fill rounded-lg
+                    {filterdMovies.length !== 0 &&
+                      filterdMovies.map((movie) => (
+                        <tr key={movie.id}>
+                          <td className="px-1 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 md:h-[100px] md:w-[180px]">
+                                <img
+                                  className="hidden md:block md:h-[100px] md:w-[180px] object-fill rounded-lg
                                 hover:brightness-120 hover:contrast-125"
-                                src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                                alt=""
-                              />
-                            </div>
-                            <div className="ml-4">
-                              <div className="text-sm font-medium text-gray-900">
-                                {movie.original_title}
+                                  src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                                  alt=""
+                                />
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">
+                                  {movie.original_title}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </td>
-                        <td className="pl-12 py-4 whitespace-nowrap">
-                          <span className="px-2 inline-flex text-sm leading-5 font-semibold text-gray-600">
-                            {movie.vote_average}
-                          </span>
-                        </td>
-                        <td className="px-8 pl-16 text-sm text-gray-600 font-semibold">
-                          {movie.popularity}
-                        </td>
-                        <td className="pr-4 md:pr-8 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <span className="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-yellow-600 hover:text-yellow-700">
-                            {movieGenreids[movie.genre_ids[0]]}
-                          </span>
-                        </td>
-                        <td className="px-2  py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <button
-                            href="#"
-                            className="px-3 md:pr-8 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800 hover:text-red-500"
-                            onClick={() => deleteFav(movie)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                          </td>
+                          <td className="pl-12 py-4 whitespace-nowrap">
+                            <span className="px-2 inline-flex text-sm leading-5 font-semibold text-gray-600">
+                              {movie.vote_average}
+                            </span>
+                          </td>
+                          <td className="px-8 pl-8 text-sm text-gray-600 font-semibold">
+                            {movie.popularity}
+                          </td>
+                          <td className="pr-4 md:pr-8 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <span className="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-yellow-600 hover:text-yellow-700">
+                              {movieGenreids[movie.genre_ids[0]]}
+                            </span>
+                          </td>
+                          <td className="px-2  py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <button
+                              href="#"
+                              className="px-3 md:pr-8 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800 hover:text-red-500"
+                              onClick={() => deleteFav(movie)}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
+                {filterdMovies.length === 0 && (
+                  <p className="flex justify-center text-center py-2 font-bold">
+                    No Favourites
+                  </p>
+                )}
               </div>
             </div>
           </div>

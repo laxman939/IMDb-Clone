@@ -3,18 +3,7 @@ import MovieFavourites from "./MovieFavourites";
 import TvFavourites from "./TvFavourites";
 
 export default function AllFavourites() {
-  const [type, setType] = useState("");
   const [curType, setCurType] = useState("movie");
-
-  function handleSetType(e) {
-    setType(e.target.name);
-
-    if (type === "tv") {
-      setCurType("tv");
-    } else if (type === "movie") {
-      setCurType("movie");
-    }
-  }
 
   return (
     <div>
@@ -22,27 +11,27 @@ export default function AllFavourites() {
         <button
           className={
             curType === "movie"
-              ? `border-2 border-amber-700 hover:text-orange-600 hover:bg-neutral-700 rounded-xl px-1 cursor-pointer`
-              : `border-2 border-amber-700 hover:text-orange-600 bg-neutral-900 rounded-xl px-1 cursor-pointer`
+              ? `border-2 border-amber-700 hover:text-orange-600 bg-neutral-900 rounded-xl px-1 cursor-pointer`
+              : `border-2 border-amber-700 hover:text-orange-600 hover:bg-neutral-700 rounded-xl px-1 cursor-pointer`
           }
           name="movie"
-          onClick={handleSetType}
+          onClick={() => setCurType("movie")}
         >
           Movies
         </button>
         <button
           className={
             curType === "tv"
-              ? `border-2 border-amber-700 hover:text-orange-600 hover:bg-neutral-700 rounded-xl px-1 cursor-pointer`
-              : `border-2 border-amber-700 hover:text-orange-600 bg-neutral-900 rounded-xl px-1 cursor-pointer`
+              ? `border-2 border-amber-700 hover:text-orange-600 bg-neutral-900 rounded-xl px-1 cursor-pointer`
+              : `border-2 border-amber-700 hover:text-orange-600 hover:bg-neutral-700 rounded-xl px-1 cursor-pointer`
           }
           name="tv"
-          onClick={handleSetType}
+          onClick={() => setCurType("tv")}
         >
           Tv Shows
         </button>
       </div>
-      {type === "movie" ? <MovieFavourites /> : <TvFavourites />}
+      {curType === "movie" ? <MovieFavourites /> : <TvFavourites />}
     </div>
   );
 }
