@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { pageNumberAction } from "../../Redux/Actions/Actions";
+import Top from "./Top";
 
-export default function Pagination() {
+export default function Pages() {
   const pageNmbr = useSelector((state) => state.Page.page);
   const dispatch = useDispatch();
 
   return (
-    <>
+    <div className="flex md:justify-between text-center">
       <div
         className="pagination-section w-full 
         flex justify-center
@@ -55,6 +56,8 @@ export default function Pagination() {
           Next
         </button>
       </div>
-    </>
+
+      <Top />
+    </div>
   );
 }

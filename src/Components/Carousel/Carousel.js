@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import BaseApi from "../../APIs/BaseApi";
-import { API_KEY } from "../../APIs/BaseApi";
 
 import { Carousel } from "react-bootstrap";
 
@@ -10,7 +9,7 @@ function CarouselComponet() {
 
   async function getMovies() {
     const response = await BaseApi.get(
-      `/3/trending/movie/week?api_key=${API_KEY}&page=1`
+      `/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&page=1`
     );
 
     setMovies(response.data.results);
@@ -25,7 +24,7 @@ function CarouselComponet() {
     <>
       <Carousel
         fade
-        interval="3000"
+        interval="2000"
         className="carousel-section flex py-12 px-2 md:px-4 bg-gray-600"
       >
         {movies.map((m) => {

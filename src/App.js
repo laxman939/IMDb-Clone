@@ -1,17 +1,25 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import { useSelector } from "react-redux";
+
 import CarouselComponet from "./Components/Carousel/Carousel";
 import ErrorPage from "./Components/ErrorPage";
-import Favourites from "./Components/Favourites/Favourites";
-import Trending from "./Components/Movies/Trending";
+// import SearchTrending from "./Components/Movies/SearchTrending";
+import Trending from "./Components/Trending";
 import NavBar from "./Components/Navigation/NavBar";
-import Pagination from "./Components/Pagination/Pagination";
 import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
-import Success from "./Components/Success";
-import "./styles.css";
 
-function App() {
+import "./styles.css";
+import AllFavourites from "./Components/Favourites";
+import Profile from "./Components/Profile/Profile";
+import Pages from "./Components/Pagination/Pagination";
+
+export default function App() {
+  let isSignin = useSelector((state) => state.IsSignIn.isSignIn);
+  const userName = useSelector((state) => state.UserName.userName);
+
   return (
     <BrowserRouter>
       <NavBar />
@@ -22,18 +30,21 @@ function App() {
             <>
               {/* <CarouselComponet /> */}
               <Trending />
-              <Pagination />
+              <Pages />
             </>
           }
         />
-        <Route path="/favourites" element={<Favourites />} />
+        {isSignin === true ? (
+          <Route path="/favourites" element={<AllFavourites />} />
+        ) : (
+          <Route path="/favourites" element={<Navigate to="/signup" />} />
+        )}
+
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/success" element={<Success />} />
+        {userName !== "" && <Route path="/profile" element={<Profile />} />}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;

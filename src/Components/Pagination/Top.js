@@ -28,12 +28,12 @@ export default function ScrollToTop() {
 
   return (
     <div
-      className="scroll-to-top text-2xl font-bold mx-20  text-orange-800 
-    hover:text-orange-700 cursor-pointer flex justify-center"
+      className="scroll-to-top text-2xl font-bold mx-10 mt-7  text-orange-800 
+    hover:text-orange-700 cursor-pointer flex align-center"
     >
       {isVisible && (
         <div onClick={scrollToTop} className="py-2 flex justify-center">
-          <spn className="px-2">Top</spn>
+          <span className="px-2">Top</span>
           <UpCircleOutlined />
         </div>
       )}

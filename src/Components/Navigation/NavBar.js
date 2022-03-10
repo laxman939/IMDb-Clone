@@ -1,86 +1,121 @@
 import React, { useState } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
-import { SearchOutlined } from "@ant-design/icons";
+import { UserOutlined, DownOutlined } from "@ant-design/icons";
+import { Menu, Dropdown, Button } from "antd";
 
-function NavBar() {
-  const [search, setSearch] = useState();
+import { useDispatch } from "react-redux";
+import { signInClick } from "../../Redux/Actions/Actions";
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
+import { useNavigate } from "react-router-dom";
 
-    setSearch(e.target.value);
-    console.log("Navigation " + search);
-  };
+export default function NavBar() {
+  const [curLink, setCurLink] = useState("");
+
+  const dispatcher = useDispatch();
+  const navigate = useNavigate();
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <button
+          type="submit"
+          className="p-1 w-[7vw] text-yellow-900 hover:text-yellow-300
+           border-red-600 rounded border hover:bg-gray-600"
+          onClick={() => navigate("/signup")}
+        >
+          Sign Up
+        </button>
+      </Menu.Item>
+      <Menu.Item>
+        <button
+          type="submit"
+          className="p-1 w-[7vw] text-yellow-900 hover:text-yellow-300
+           border-red-600 rounded border hover:bg-gray-600"
+          onClick={() => {
+            dispatcher(signInClick(false));
+            navigate("/");
+          }}
+        >
+          Logout
+        </button>
+      </Menu.Item>
+    </Menu>
+  );
+
+  // function handleLogout() {
+
+  // }
 
   return (
     <div
-      className="border-2 border-red-700
-    md:pl-8 pl-2 py-3 md:space-x-8  space-x-4
+      className="border-2 border-red-700 static
+    md:px-6 px-2 py-3 md:space-x-6  space-x-4
      flex  items-center justify-between bg-gray-900"
     >
       <NavLink
         to="/"
         className="text-xl md:text-2xl px-2 py-1 text-gray-800 no-underline font-extrabold font-sans
-         rounded bg-amber-400 "
+         rounded bg-amber-400 hover:bg-yellow-400 hover:text-gray-900"
+        onClick={() => setCurLink("trending")}
       >
         <span className="hover:text-green-900"> IMDb</span>
       </NavLink>
-      <div className="flex flex-row md:space-x-9 space-x-4 md:pr-12 pr-4">
-        <div>
-          <label className="relative block">
-            <span className="sr-only">Search</span>
-            <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-              <SearchOutlined style={{ fontSize: "16px", color: "black" }} />
-            </span>
-
-            <input
-              className="placeholder:italic placeholder:text-slate-700 block bg-white w-[22vw]  rounded-md py-1 pl-9 pr-3 shadow-sm focus:outline-none  sm:text-sm"
-              placeholder="Search for anything..."
-              type="text"
-              name="search"
-            />
-          </label>
-        </div>
-
+      <div className="flex flex-row md:space-x-9 space-x-2 md:pr-12 pr-0">
         <div>
           <NavLink
             to="/"
-            className="font-medium no-underline text-white text-base md:text-xl rounded
-            hover:border-2 hover:border-dotted hover:bg-yellow-900"
+            className={
+              curLink === "trending"
+                ? `font-medium no-underline text-white text-base md:text-xl rounded
+              bg-yellow-900 m-1 px-2 py-1 border-2 border-amber-800`
+                : `font-medium no-underline text-white text-base md:text-xl rounded
+                hover:bg-yellow-900 m-1 px-2 py-1 border-2 border-amber-800`
+            }
+            onClick={() => setCurLink("trending")}
           >
-            Movies
+            Trending
           </NavLink>
         </div>
         <div>
           <NavLink
             to="/favourites"
-            className="font-medium no-underline text-base text-white md:text-xl rounded
-            hover:border-2 hover:border-dotted hover:bg-yellow-900"
+            className={
+              curLink === "fav"
+                ? `font-medium no-underline text-white text-base md:text-xl rounded
+                bg-yellow-900 m-1 px-2 py-1 border-2 border-amber-800`
+                : `font-medium no-underline text-white text-base md:text-xl rounded
+                hover:bg-yellow-900 m-1 px-2 py-1 border-2 border-amber-800`
+            }
+            onClick={() => setCurLink("fav")}
           >
             Favorites
           </NavLink>
         </div>
         <div>
-          <NavLink
-            to="/signin"
-            className="font-medium no-underline text-base text-white md:text-xl rounded
-            hover:border-2 hover:border-dotted hover:bg-yellow-900"
-          >
-            SignIn
+          <NavLink to="#">
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <NavLink
+                to="#"
+                className={
+                  curLink === "account"
+                    ? `font-medium no-underline text-white text-base md:text-xl rounded
+              bg-yellow-900 m-1 px-2 py-1 border-2 border-amber-800 ant-dropdown-link`
+                    : `font-medium no-underline text-white text-base md:text-xl rounded
+                hover:bg-yellow-900 m-1 px-2 py-1 border-2 border-amber-800 ant-dropdown-link`
+                }
+                onClick={(e) => {
+                  setCurLink("account");
+                  e.preventDefault();
+                }}
+              >
+                <UserOutlined />
+              </NavLink>
+            </Dropdown>
           </NavLink>
-          {/* <NavLink
-            to="/signup"
-            className="font-medium no-underline text-base text-white md:text-xl rounded
-            hover:border-2 hover:border-dotted hover:bg-yellow-900"
-          >
-            Sign Up
-          </NavLink> */}
         </div>
       </div>
     </div>
   );
 }
-
-export default NavBar;
