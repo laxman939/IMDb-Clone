@@ -1,58 +1,73 @@
 import React, { useState } from "react";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-import { UserOutlined, DownOutlined } from "@ant-design/icons";
-import { Menu, Dropdown, Button } from "antd";
-
-import { useDispatch } from "react-redux";
-import { signInClick } from "../../Redux/Actions/Actions";
+import { UserOutlined } from "@ant-design/icons";
+import { Menu, Dropdown } from "antd";
+import { Tooltip } from "antd";
 
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
-  const [curLink, setCurLink] = useState("");
+  const [curLink, setCurLink] = useState("trending");
 
-  const dispatcher = useDispatch();
+  const isSignin = useSelector((state) => state.IsSignIn.isSignIn);
+
   const navigate = useNavigate();
 
   const menu = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key="1">
         <button
           type="submit"
-          className="p-1 w-[7vw] text-yellow-900 hover:text-yellow-300
+          className="p-1 md:w-[7vw] w-[15vw] text-yellow-900 hover:text-yellow-300
            border-red-600 rounded border hover:bg-gray-600"
           onClick={() => navigate("/signup")}
         >
           Sign Up
         </button>
       </Menu.Item>
-      <Menu.Item>
-        <button
-          type="submit"
-          className="p-1 w-[7vw] text-yellow-900 hover:text-yellow-300
+      {isSignin === true ? (
+        <Menu.Item key="2">
+          <button
+            type="submit"
+            className="p-1 md:w-[7vw] w-[15vw] text-yellow-900 hover:text-yellow-300
            border-red-600 rounded border hover:bg-gray-600"
-          onClick={() => {
-            dispatcher(signInClick(false));
-            navigate("/");
-          }}
-        >
-          Logout
-        </button>
-      </Menu.Item>
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Logout
+          </button>
+        </Menu.Item>
+      ) : (
+        <Menu.Item key="2">
+          <button
+            type="submit"
+            className="p-1 md:w-[7vw] w-[15vw] text-yellow-900 hover:text-yellow-300
+           border-red-600 rounded border hover:bg-gray-600"
+            onClick={() => {
+              navigate("/signin");
+            }}
+          >
+            Sign In
+          </button>
+        </Menu.Item>
+      )}
     </Menu>
   );
 
-  // function handleLogout() {
+  const text = <span>Account</span>;
 
-  // }
+  const buttonWidth = 70;
 
   return (
     <div
       className="border-2 border-red-700 static
     md:px-6 px-2 py-3 md:space-x-6  space-x-4
-     flex  items-center justify-between bg-gray-900"
+     flex  items-center justify-between 
+     bg-gray-900 hover:bg-gray-700 hover:border-red-500"
     >
       <NavLink
         to="/"
@@ -88,13 +103,16 @@ export default function NavBar() {
                 : `font-medium no-underline text-white text-base md:text-xl rounded
                 hover:bg-yellow-900 m-1 px-2 py-1 border-2 border-amber-800`
             }
-            onClick={() => setCurLink("fav")}
+            onClick={() => {
+              isSignin === "true" ? setCurLink("fav") : setCurLink("account");
+            }}
           >
             Favorites
           </NavLink>
         </div>
-        <div>
-          <NavLink to="#">
+
+        <div style={{ marginLeft: buttonWidth, whiteSpace: "nowrap" }}>
+          <Tooltip placement="leftTop" title={text}>
             <Dropdown overlay={menu} trigger={["click"]}>
               <NavLink
                 to="#"
@@ -113,7 +131,7 @@ export default function NavBar() {
                 <UserOutlined />
               </NavLink>
             </Dropdown>
-          </NavLink>
+          </Tooltip>
         </div>
       </div>
     </div>
