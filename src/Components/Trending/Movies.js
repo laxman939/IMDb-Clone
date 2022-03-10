@@ -8,9 +8,6 @@ import { motion } from "framer-motion";
 //Redux
 import { getFavouriteMovies } from "../../Redux/Actions/Actions";
 
-//Spinner
-import { SpinnerCircular } from "spinners-react";
-
 // antd
 import { LikeOutlined, HeartOutlined, HeartFilled } from "@ant-design/icons";
 
@@ -66,27 +63,15 @@ export default function Movies({ search }) {
 
   return (
     <div>
-      {trendingMovies.length === 0 && (
-        <div className="cursor-progress flex justify-center">
-          <SpinnerCircular
-            size="100"
-            thickness="80"
-            color="green"
-            secondaryColor="brown"
-            speed="150"
-          />
-        </div>
-      )}
-
-      <motion.div className="flex flex-wrap md:justify-between justify-center p-2 m-2">
-        {trendingMovies.length !== 0 &&
+      <div className="flex flex-wrap items-start justify-around p-3 m-2">
+        {trendingMovies.length !== 0 ? (
           trendingMovies.map((movie) => (
-            <div
+            <motion.div
               layout="true"
               className={`flex flex-column
                   md:h-[52vh] md:w-[320px] h-[38vh] w-[250px]
                   rounded-xl 
-                  md:px-4 md:m-3 mb-4 px-0 
+                  md:px-4 md:m-4 mb-4 px-0 
                   hover:scale-105 ease-out duration-300
                 `}
               key={movie.id}
@@ -170,9 +155,12 @@ export default function Movies({ search }) {
                   )}
                 </div>
               </div>
-            </div>
-          ))}
-      </motion.div>
+            </motion.div>
+          ))
+        ) : (
+          <h3>No Movie found</h3>
+        )}
+      </div>
     </div>
   );
 }

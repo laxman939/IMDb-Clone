@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 //Redux
 import { getTrendingMovies, getTrendingTv } from "../../Redux/Actions/Actions";
 
+//Spinner
+import { SpinnerCircular } from "spinners-react";
+
 // antd
 import { SearchOutlined } from "@ant-design/icons";
 
@@ -50,8 +53,8 @@ export default function Trending() {
 
   return (
     <>
-      <div className="trending-section mb-2 mt-4 ">
-        <div className="mr-2 pl-4 md:px-4 font-black text-lg md:text-2xl text-left text-orange-800">
+      <div className="trending-section mb-2 ">
+        <div className="mr-2 pl-4 md:px-4 font-extrabold text-lg md:text-2xl text-left text-orange-800 hover:text-yellow-900">
           Trending
           <div
             className="space-x-8 rounded-lg p-1 bg-neutral-600 text-yellow-500 text-lg md:text-xl
@@ -113,8 +116,18 @@ export default function Trending() {
         </div>
         {type === "movie" ? (
           <Movies search={search} />
-        ) : (
+        ) : type === "tv" ? (
           <TvShows search={search} />
+        ) : (
+          <div className="cursor-progress flex justify-center">
+            <SpinnerCircular
+              size="100"
+              thickness="80"
+              color="green"
+              secondaryColor="brown"
+              speed="150"
+            />
+          </div>
         )}
       </div>
     </>
