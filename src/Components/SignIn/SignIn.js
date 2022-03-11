@@ -53,7 +53,6 @@ function SignIn() {
       data.some((u) => u.email.includes(signinData.email)) === true &&
       data.some((u) => u.password.includes(signinData.password)) === true
     ) {
-      alert("success");
       setErrorText("");
       dispatcher(signInClick(true));
       dispatcher(getUserName(extractedName));
