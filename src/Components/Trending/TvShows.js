@@ -118,7 +118,7 @@ export default function TvShows({ search }) {
                     Release
                   </span>
                   <span className="text-yellow-600 font-mono">
-                    {tv.release_date}
+                    {tv.first_air_date}
                   </span>
                 </div>
                 <div className="flex flex-column pt-2">
