@@ -63,7 +63,7 @@ export default function Movies({ search }) {
 
   return (
     <>
-      <div className="flex flex-wrap items-start justify-around p-3 md:m-2 m-1">
+      <div className="flex flex-wrap items-start justify-around p-3 md:py-4 md:m-8 m-1">
         {trendingMovies.length !== 0 ? (
           trendingMovies.map((movie) => (
             <motion.div
@@ -71,7 +71,7 @@ export default function Movies({ search }) {
               className={`flex flex-column
               md:h-[52vh] md:w-[320px] h-[26vh] w-[252px]
                   rounded-xl 
-                  md:px-4 md:mb-4 mb-16 sm:mb-4 py-2 px-0 
+                  md:px-4 md:mb-12 mb-16 md:py-8 py-2 px-0 
                   hover:scale-105 ease-out duration-300
                 `}
               key={movie.id}

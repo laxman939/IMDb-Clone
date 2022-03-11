@@ -49,8 +49,8 @@ export default function SignUp() {
 
   return (
     <>
-      <div className="max-h-full flex items-center justify-center py-12 px-20 sm:px-10 lg:px-10">
-        <div className="max-w-md w-[60vw] md:w-[90vw] space-y-4 bg-white rounded-2xl shadow-2xl">
+      <div className="max-h-full flex items-center justify-center py-12 px-10 md:px-20 lg:px-10">
+        <div className="max-w-md w-[80vw] md:w-[90vw] space-y-4 bg-white rounded-2xl shadow-2xl">
           <div
             className="text-center text-2xl md:text-4xl p-2 py-3 rounded-t-2xl font-mono font-extrabold
           bg-black text-white opacity-90 shadow-md"
