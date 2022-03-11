@@ -21,8 +21,8 @@ function SignIn() {
   });
 
   // From local storage
-  let localData = localStorage.getItem("users");
-  localData = JSON.parse(localData);
+  let Data = localStorage.getItem("users");
+  let data = JSON.parse(Data);
 
   function handleChange(e) {
     setSigninData({
@@ -30,6 +30,8 @@ function SignIn() {
       [e.target.name]: e.target.value,
     });
   }
+  console.log("signinData.email " + signinData.email, signinData.password);
+  console.log(data.some((u) => u.email.includes(signinData.email)));
 
   function signinBtn(e) {
     e.preventDefault();
@@ -43,9 +45,15 @@ function SignIn() {
     if (signinData.email === "" && signinData.password === "") {
       setErrorText("Please fill fields.");
     } else if (
-      localData.map((u) => u.email === signinData.mail) &&
-      localData.map((u) => u.password === signinData.password)
+      data.some((u) => u.email.includes(signinData.email)) === false &&
+      data.some((u) => u.password.includes(signinData.password)) === false
     ) {
+      setErrorText("Please fill correct details.");
+    } else if (
+      data.some((u) => u.email.includes(signinData.email)) === true &&
+      data.some((u) => u.password.includes(signinData.password)) === true
+    ) {
+      alert("success");
       setErrorText("");
       dispatcher(signInClick(true));
       dispatcher(getUserName(extractedName));
