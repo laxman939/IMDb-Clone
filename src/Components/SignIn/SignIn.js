@@ -22,7 +22,7 @@ function SignIn() {
 
   // From local storage
   let Data = localStorage.getItem("users");
-  let data = JSON.parse(Data);
+  let data = JSON.parse(Data) || [];
 
   function handleChange(e) {
     setSigninData({
@@ -30,8 +30,6 @@ function SignIn() {
       [e.target.name]: e.target.value,
     });
   }
-  console.log("signinData.email " + signinData.email, signinData.password);
-  console.log(data.some((u) => u.email.includes(signinData.email)));
 
   function signinBtn(e) {
     e.preventDefault();
