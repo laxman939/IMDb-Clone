@@ -21,10 +21,8 @@ export default function Trending() {
   let pageNmbr = useSelector((state) => state.Page.page);
   const dispatch = useDispatch();
 
-  const [type, setType] = useState("movie");
-
   const [search, setSearch] = useState("");
-  const [curType, setCurType] = useState("movie");
+  const [curType, setCurType] = useState("");
 
   useEffect(() => {
     getMovies();
@@ -57,7 +55,7 @@ export default function Trending() {
         <div className="mr-2 pl-4 md:px-4 font-extrabold text-lg md:text-2xl text-left text-orange-800 hover:text-yellow-900">
           Trending
           <div
-            className="space-x-8 rounded-lg p-1 bg-neutral-600 text-yellow-500 text-lg md:text-xl
+            className="space-x-4 md:space-x-8 rounded-lg p-1 bg-neutral-600 text-yellow-500 text-lg md:text-xl
            flex flex-row md:justify-between justify-around font-bold"
           >
             <button
@@ -69,7 +67,6 @@ export default function Trending() {
               name="movie"
               onClick={() => {
                 setCurType("movie");
-                setType("movie");
               }}
             >
               Movies
@@ -82,7 +79,6 @@ export default function Trending() {
               }
               name="tv"
               onClick={() => {
-                setType("tv");
                 setCurType("tv");
               }}
             >
@@ -114,9 +110,9 @@ export default function Trending() {
             </div>
           </div>
         </div>
-        {type === "movie" ? (
+        {curType === "movie" ? (
           <Movies search={search} />
-        ) : type === "tv" ? (
+        ) : curType === "tv" ? (
           <TvShows search={search} />
         ) : (
           <div className="cursor-progress flex justify-center">
