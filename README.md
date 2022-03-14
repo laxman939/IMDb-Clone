@@ -21,13 +21,21 @@ Local Storage
 
 ### FEATURES
 ✔𝘊𝘢𝘳𝘰𝘶𝘴𝘦𝘭🖼 𝘰𝘧 𝘮𝘰𝘷𝘪𝘦 𝘱𝘰𝘴𝘵𝘦𝘳𝘴
+
 ✔𝘚𝘦𝘢𝘳𝘤𝘩🔍 𝘰𝘱𝘵𝘪𝘰𝘯 𝘧𝘰𝘳 𝘵𝘳𝘦𝘯𝘥𝘪𝘯𝘨 𝘮𝘰𝘷𝘪𝘦𝘴 𝘢𝘯𝘥 𝘵𝘷 𝘴𝘩𝘰𝘸𝘴
+
 ✔𝘗𝘢𝘨𝘪𝘯𝘢𝘵𝘪𝘰𝘯 𝘸𝘪𝘵𝘩 𝘴𝘰𝘮𝘦 𝘧𝘦𝘢𝘵𝘶𝘳𝘦𝘴🔢
+
 ✔𝘚𝘤𝘳𝘰𝘭𝘭 𝘛𝘰𝘱⬆
+
 ✔𝘚𝘪𝘨𝘯𝘜𝘱, 𝘚𝘪𝘨𝘯𝘐𝘯, 𝘢𝘯𝘥 𝘓𝘰𝘨𝘰𝘶𝘵
+
 ✔𝘍𝘢𝘷𝘰𝘶𝘳𝘪𝘵𝘦𝘴⭐
+
    ◾ 𝘍𝘪𝘭𝘵𝘦𝘳𝘪𝘯𝘨 𝘧𝘰𝘳 𝘔𝘰𝘷𝘪𝘦𝘴 𝘢𝘯𝘥 𝘛𝘷 𝘴𝘩𝘰𝘸𝘴, 
+
    ◾ 𝘚𝘰𝘳𝘵𝘪𝘯𝘨 𝘧𝘰𝘳 𝘙𝘢𝘵𝘪𝘯𝘨 𝘢𝘯𝘥 𝘗𝘰𝘱𝘶𝘭𝘢𝘵𝘪𝘰𝘯 ⬇⬆,
+   
    ◾ 𝘍𝘪𝘭𝘵𝘦𝘳𝘪𝘯𝘨 𝘧𝘰𝘳 𝘥𝘪𝘧𝘧𝘦𝘳𝘦𝘯𝘵 𝘎𝘦𝘯𝘳𝘦𝘴
 #### API
 Tmdb API
@@ -68,6 +76,4 @@ Tmdb API
 
 
 
-#### Ingredients Model
-![Screenshot](https://github.com/laxman939/food_recipe_finder/blob/main/Screenshots/Recipe2.jpg?raw=true)
 
