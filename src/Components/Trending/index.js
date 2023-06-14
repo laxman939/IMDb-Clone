@@ -22,11 +22,13 @@ export default function Trending() {
   const dispatch = useDispatch();
 
   const [search, setSearch] = useState("");
-  const [curType, setCurType] = useState("");
+  const [curType, setCurType] = useState("movie");
 
   useEffect(() => {
     getMovies();
+  }, []);
 
+  useEffect(() => {
     getTvShows();
   }, [search, pageNmbr]);
 

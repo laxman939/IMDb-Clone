@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import MovieFavourites from "./MovieFavourites";
 import TvFavourites from "./TvFavourites";
+import { useEffect } from "react";
 
 export default function AllFavourites() {
   const [curType, setCurType] = useState("movie");
+
+  useEffect(() => {
+    setCurType("movie");
+  }, []);
 
   return (
     <div>
