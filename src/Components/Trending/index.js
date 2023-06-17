@@ -30,6 +30,7 @@ export default function Trending() {
 
   useEffect(() => {
     getTvShows();
+    getMovies();
   }, [search, pageNmbr]);
 
   // Get movies
