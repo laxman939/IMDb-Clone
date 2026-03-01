@@ -16,7 +16,7 @@
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.18.8",
-    "axios": "^0.26.0",
+    "axios": "^1.13.6",
     "bootstrap": "^5.1.3",
     "framer-motion": "^6.2.8",
     "generate-username-from-email": "^1.0.2",
